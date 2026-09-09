@@ -17,21 +17,26 @@ A plain HTML/CSS/JS personal site — no build step, no framework, no monthly ho
 - **Book / frameworks downloads**: the current site's "Download" buttons aren't wired to real files, so these now go to a pre-filled `mailto:` to you instead of a dead link. Swap in real PDFs later by dropping them in `assets/` and pointing the button at the file.
 - **Forms** (contact, speaking inquiry, newsletter signup) submit via [FormSubmit](https://formsubmit.co) directly to `sloangaon@gmail.com` — free, no account needed. **The first submission on each form will trigger a one-time "confirm your email" message from FormSubmit** — click confirm or future submissions from that form won't reach you. Test all three forms once after deploying.
 
-## Deploy to Vercel (free)
+## Deploy to Vercel (free) — done
 
-1. Push this folder to a GitHub repo (or drag-and-drop the folder into the Vercel dashboard at vercel.com/new — GitHub isn't required).
-2. In [vercel.com](https://vercel.com), "Add New Project" → import the repo (or the folder). No framework preset needed — Vercel will detect it as a static site. Click Deploy.
-3. You'll get a `*.vercel.app` URL immediately.
+- Repo: https://github.com/Sloan-Personal/sloangaon-website (public — required for free-tier deploys from a GitHub Organization; nothing sensitive is in this repo)
+- Vercel project: `datadotgov/sloangaon-website`, deployed and live at `sloangaon-website.vercel.app`
+- Domains `sloangaon.com` and `www.sloangaon.com` are already added to the Vercel project.
 
-## Point sloangaon.com at it (domain is on GoDaddy)
+## Point sloangaon.com at it (domain is on GoDaddy) — DNS still needed
 
-1. In the Vercel project → **Settings → Domains** → add `sloangaon.com` (and `www.sloangaon.com`).
-2. Vercel will show you DNS records to add. Typically:
-   - `A` record: `@` → `76.76.21.21`
-   - `CNAME` record: `www` → `cname.vercel-dns.com`
-   (Vercel shows the exact current values on the Domains screen — use those if they differ.)
-3. In GoDaddy → your domain → **DNS Management**, add/edit those records to match.
-4. DNS propagation is usually minutes, sometimes up to ~48 hours. Vercel's dashboard shows a green check once it's verified and SSL is issued automatically (free).
+Vercel needs these exact records added at GoDaddy (DNS Management for sloangaon.com):
+
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `216.198.79.1` |
+| CNAME | `www` | `22b073d3dd01dfac.vercel-dns-017.com.` |
+
+Steps:
+1. Log into GoDaddy → **My Products** → `sloangaon.com` → **DNS** → **DNS Management**.
+2. If an existing `A` record on `@` or `CNAME` on `www` is already there (e.g. GoDaddy's default parked-page records), edit it to the value above rather than adding a duplicate.
+3. Save. DNS propagation is usually minutes, sometimes up to ~48 hours.
+4. Vercel's Domains page (Settings → Domains on the project) will flip from "Invalid Configuration" to a green check once it verifies, and issues free SSL automatically.
 
 ## Analytics (free)
 
